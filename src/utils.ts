@@ -5,8 +5,10 @@ import fs from 'fs';
 
 export function buildProject(id: string) {
     return new Promise((resolve, reject) => {
+        console.log("running commands, npm i , npm run build")
         exec(`cd ${path.join(__dirname, `output/${id}`)} && npm install && npm run build`, (err, stdout, stderr) => {
             if (err) {
+                console.log("couldn't build")
                 reject(err);
             } else {
                 resolve(stdout);
@@ -17,6 +19,7 @@ export function buildProject(id: string) {
 
 
 export const getAllFiles = (folderpath: string) => {
+    console.log(`getting all files for ${folderpath}`)
     let response: string[] = [];
 
     const allFilesAndFolder = fs.readdirSync(folderpath);
@@ -60,6 +63,7 @@ const s3Bucket = new S3Client({
 // localFilePath => /users/nxvtej/vercel-1.0/dist/output/123/src/app.jsx
 export const uploadfiletoBucket = async (fileName: string, localFilePath: string) => {
 
+    console.log(`file uploading.... ${fileName}`)
     const fileContent = fs.readFileSync(localFilePath)
 
     try {
