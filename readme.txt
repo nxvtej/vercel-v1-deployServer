@@ -27,3 +27,22 @@ when pushed from there
 it will immediately come in consolde due to subscriber 
 
 function to pull from s3/r2 to server and build
+
+
+then function to download folders/files from s3, many ways
+
+one used here is using claude
+
+here in chunks by sending getobject command to cliend
+   const chunks = [];
+            for await (const chunk of response.Body as any) {
+                chunks.push(chunk);
+            }
+            const fileBuffer = Buffer.concat(chunks);
+
+            // Write the file
+            fs.writeFileSync(localFilePath, fileBuffer);
+            // console.log(`Downloaded: ${object.Key}`);
+
+
+now run npm build 
