@@ -46,3 +46,6 @@ here in chunks by sending getobject command to cliend
 
 
 now run npm build 
+
+soo after build copy the dist folder over to the server and let is run 
+building copyfinaldist(${id})
